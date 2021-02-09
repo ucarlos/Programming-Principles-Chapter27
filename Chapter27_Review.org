@@ -1,0 +1,40 @@
+#+title: Chapter 27 Review
+#+author: Ulysses Carlos
+#+date: <2021-02-09 Tue>
+
+* Problems
+** Is C++ a subset of C?
+** Who invented C?
+** Name a highly regarded C textbook.
+** In what organization were C and C++ invented?
+** Why is C++ (almost) compatible with C?
+** Why is C++ only almost compatible with C?
+** List a dozen C++ features not present in C.
+** What organization “owns” C and C++?
+** List six C++ standard library components that cannot be used in C.
+** Which C standard library components can be used in C++?
+** How do you achieve function argument type checking in C?
+** What C++ features related to functions are missing in C? List at least three. Give examples.
+** How do you call a C function from C++?
+** How do you call a C++ function from C?
+** Which types are layout compatible between C and C++? (Just) give examples.
+** What is a structure tag?
+** List 20 C++ keywords that are not keywords in C.
+** Is int x; a definition in C++? In C?
+** What is a C-style cast and why is it dangerous?
+** What is void* and how does it differ in C and C++?
+** How do enumerations differ in C and C++?
+** What do you do in C to avoid linkage problems from popular names?
+** What are the three most common C functions from free-store use?
+** What is the definition of a C-style string?
+** How do == and strcmp() differ for C-style strings?
+** How do you copy C-style strings?
+** How do you find the length of a C-style string?
+** How would you copy a large array of int s?
+** What’s nice about printf() ? What are its problems/limitations?
+** Why should you never use gets() ? What can you use instead?
+** How do you open a file for reading in C?
+** What is the difference between const in C and const in C++?
+** Why don’t we like macros?
+** What are common uses of macros?
+** What is an include guard?
