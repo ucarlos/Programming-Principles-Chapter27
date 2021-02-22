@@ -18,8 +18,6 @@ using namespace std;
 
 char *strcpy(char *dest, const char *source) {
 	bool check;
-
-
 	// Here's a more understandable loop
 	// The loop continues if check is nonzero (No null character)
 	while ((check = (*dest++ = *source++)))

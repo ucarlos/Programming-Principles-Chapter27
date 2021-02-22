@@ -1,40 +1,130 @@
 #+title: Chapter 27 Review
 #+author: Ulysses Carlos
 #+date: <2021-02-09 Tue>
-
+#+OPTIONS: toc:nil
+#+latex_class_options: [12pt]
+# #+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup
+#+LaTeX_HEADER: \usepackage[T1]{fontenc}
+#+LaTeX_HEADER: \usepackage{mathpazo}
+#+LaTeX_HEADER: \linespread{1.05}
+#+LaTeX_HEADER: \usepackage[scaled]{helvet}
+#+LaTeX_HEADER: \usepackage{courier}
 * Problems
 ** Is C++ a subset of C?
+C++ is mostly a subset of C, but there are some incompatibilities between the two languages.
 ** Who invented C?
+Dennis Ritchie and Ken Thompson.
 ** Name a highly regarded C textbook.
+There's the C Programming Language by Dennis Ritchie and Brian Kernighan. 
 ** In what organization were C and C++ invented?
+At Bell Labs.
 ** Why is C++ (almost) compatible with C?
+Both C and C++ are inherited from an earlier pre-standard version of C, so most valid programs written in C are also valid C++ programs.
 ** Why is C++ only almost compatible with C?
+The incompatibilities between C and C++ mainly arise to the stronger type checking found in C++ which disallows behavior that is acceptable in C. There are more keywords in C++ than in C, so C programs that contain C++ keywords are incompatible. There is also types that have the same name in C and C++ that behave differently.
 ** List a dozen C++ features not present in C.
++ Object Oriented Programming
++ Data encapsulation
++ Compile-time constants
++ String objects such as std::string
++ Containers such as std::vector, std::list, and std::map
++ Standard Template Library
++ Templates
++ Different Casting functions
++ Built-in thread library
++ Operator Overloading  
++ iostream objects such as istream, ostream, fstream, etc.
++ Functions with no parameters are implied to have no parameters instead of accepting any parameters.
 ** What organization “owns” C and C++?
+The ISO (International Standard Organization)
 ** List six C++ standard library components that cannot be used in C.
++ Containers such as std::string, std::vector
++ Standard Template Library
++ Memory allocation functions such as new and delete
++ Smart Pointers such as std::unique_ptr
++ Multithreading (std::thread)
++ iostreams    
 ** Which C standard library components can be used in C++?
++ Most of the C standard library (Except a few that have been superseded in C++)  
 ** How do you achieve function argument type checking in C?
 ** What C++ features related to functions are missing in C? List at least three. Give examples.
 ** How do you call a C function from C++?
+You can call a C function by declaring the function as external "C" in C++, calling the function in C++ and then linking both the C++ and C code together.
 ** How do you call a C++ function from C?
+A C++ function has to be defined as extern "C" in C++. The function can then be called in C indirectly by declaring the function without extern "C" in C and then linking the C and C++ code together.
 ** Which types are layout compatible between C and C++? (Just) give examples.
++ Basic types such as int, long, short
++ Structures usually follow the same memory layout in C++ as in C
 ** What is a structure tag?
+A structure tag is a name following the struct, enum or union keyword that defines the tag for a particular struct, enum or union. It is not the actual name of the object, unless a typedef is used to define the struct/enum/union with a specific name.
 ** List 20 C++ keywords that are not keywords in C.
++ using
++ class
++ template
++ typename
++ new
++ delete
++ try
++ catch
++ throw
++ this
++ operator
++ namespace
++ constexpr
++ static_cast
++ reinterpret_cast
++ public
++ protected
++ private
++ override
++ virtual
++ nullptr  
 ** Is int x; a definition in C++? In C?
+int x; is a definition in C++, even if it is uninitialized. This is not the case for C, where int x; can be declared multiple times.
 ** What is a C-style cast and why is it dangerous?
+C-style casts allow a type to be interpreted as another type. This can be quite dangerous as it can allow for const to be casted off from a constant variable, and allow for incompatible types to be casted through. Again, this is fine if you know what you're doing.
 ** What is void* and how does it differ in C and C++?
+void* is a type of universal pointer in which a type can be converted to and from void* to another pointer of type T. C allows implicit conversion from void* to any other pointer; An example can be seen when using malloc, calloc or realloc, where no casting is required. This cannot be done in C++, which would require explicit type casting.
 ** How do enumerations differ in C and C++?
+Enums in C cannot be scoped, allowing it to be used throughout the program, but this allows the option for integers to be assigned to an enum.
 ** What do you do in C to avoid linkage problems from popular names?
+You would have to give a unique name for any structure or function that you declare or define.
 ** What are the three most common C functions from free-store use?
+malloc, calloc, and free.
 ** What is the definition of a C-style string?
+A C-style string is a string that is terminated with a null character '\0'
 ** How do == and strcmp() differ for C-style strings?
+Using == on a C-style string will compare the pointers, while strcmp determines if the string is less than, equal to, or greater than another string string lexiographically.
 ** How do you copy C-style strings?
+You would have to use a function like strcpy or strncpy.
 ** How do you find the length of a C-style string?
+By using strlen or strnlen.
 ** How would you copy a large array of int s?
+I could use memcpy or memmove, but I would prefer using memmove as that allows the src and destination arrays to overlap each other by copying to a buffer and then from the buffer to the destination array.
 ** What’s nice about printf() ? What are its problems/limitations?
+printf() allows variables to be printed in a specified format, which can be easier to use in some circumstances than using cout. However, printf() does not preform any form of type checking, so if invalid data is passed to printf(), there is no way to recover. Also, printf() cannot be extended to include additional format options.
 ** Why should you never use gets() ? What can you use instead?
+gets() does not preform any sort of bound checking; This can cause a buffer overflow to occur. Instead, fgets() ought to be used as it specifies the maximum amount of characters that can be read and the file to read from.
 ** How do you open a file for reading in C?
+You can open a file for reading by calling fopen() with a 'r' modifier like so:
+#+begin_src c
+fopen(fp, 'r');
+#+end_src
 ** What is the difference between const in C and const in C++?
+const is a compile time variable in C++, while in C a const variable can be declared and then defined.
 ** Why don’t we like macros?
+Macros preform no type checking as the preprocessor simply replaces the macro with the text defined to the macro. This can be the source of various bugs as there is no form of checking.
 ** What are common uses of macros?
+Macros are usually used to define constants, variables used in a include guard, and macro functions that accept a specified number of arguments.
 ** What is an include guard?
+An include guard is a group of preprocessor directives that can prevent a header file from being included multiple times. This can take the form below:
+#+begin_src c
+  #ifndef HEADER_H
+  #define HEADER_H
+  #endif
+#+end_src
+
+An alternative to an include guard is the preprocessor directive
+#+begin_src c
+#pragma once
+#+end_src
