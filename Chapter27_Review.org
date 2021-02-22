@@ -47,7 +47,23 @@ The ISO (International Standard Organization)
 ** Which C standard library components can be used in C++?
 + Most of the C standard library (Except a few that have been superseded in C++)  
 ** How do you achieve function argument type checking in C?
+You can do the following:
++ Use a lint program that reports any function argument issues
++ Enable warnings to be shown while compiling the program; You can also try to treat warnings as errors.
++ Use header files consistently, and do not implicitly define functions.  
 ** What C++ features related to functions are missing in C? List at least three. Give examples.
++ Function overloading is unavailable in C; so for example the functions
+  #+begin_src c
+        void print(int val);
+    void print(char *str);
+  #+end_src
+  is invalid in C.
++ A function with no argument will accept no arguments in C++, while in C, that function will accept any amount of arguments. In order to specifiy no arguments, void must be passed as a function argument.
++ Inline functions cannot be used in C89 (Only in C99 and later). So the function
+  #+begin_src c
+    inline void print();
+  #+end_src
+  will cause a compiler error in C89.
 ** How do you call a C function from C++?
 You can call a C function by declaring the function as external "C" in C++, calling the function in C++ and then linking both the C++ and C code together.
 ** How do you call a C++ function from C?
